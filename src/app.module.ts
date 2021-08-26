@@ -1,11 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Container } from 'typeorm-typedi-extensions';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { EnviromentVariables } from './config/env/env';
-import { validate } from './config/env/env.validation';
+import { validate } from './config/env.validation';
 
 @Module({
   imports: [
