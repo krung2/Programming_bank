@@ -18,7 +18,7 @@ export class EnviromentVariables {
   DATABASE_PASSWORD: string;
 
   @IsString()
-  DATABASE_DATABASE_NAME: string;
+  DATABASE_DATABASE: string;
 
   @IsString()
   REDIS_HOST: string;
