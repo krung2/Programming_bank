@@ -29,9 +29,9 @@ services:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
     env_file: 
-      - mysql.env
+      - .env
     environment:
       - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD}
       - MYSQL_DATABASE=hackerthon
       - MYSQL_PASSWORD=${DATABASE_PASSWORD}
-      - MYSQL_USER=${DATABASE_USER}
+      - MYSQL_USER=${DATABASE_USERNAME}
