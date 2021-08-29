@@ -12,7 +12,9 @@ export default class User {
   })
   id: string;
 
-  @Column()
+  @Column({
+    select: false,
+  })
   pw: string;
 
   @Column()
