@@ -40,7 +40,8 @@ export class AuthController {
     @Body() loginDto: LoginDto,
   ): Promise<BaseResponse<LoginResponseDto>> {
 
+    const loginResponse: LoginResponseDto = await this.userService.login(loginDto);
 
-    return new BaseResponse<LoginResponseDto>(HttpStatus.OK, '로그인 성공');
+    return new BaseResponse<LoginResponseDto>(HttpStatus.OK, '로그인 성공', loginResponse);
   }
 }
