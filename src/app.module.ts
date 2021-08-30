@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { validate } from './config/env.validation';
 import { AuthModule } from './auth/auth.module';
 import { TokenModule } from './token/token.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -29,7 +30,8 @@ import { TokenModule } from './token/token.module';
       validate,
     }),
     AuthModule,
-    TokenModule
+    TokenModule,
+    UserModule
   ],
   controllers: [AppController],
   providers: [AppService],
