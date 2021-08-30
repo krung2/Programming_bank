@@ -15,4 +15,10 @@ export default class AccountRepository extends Repository<Account> {
       .where('account_id = :accountId', { accountId })
       .getOne();
   }
+
+  public findMyAccounts(userPhone: string): Promise<Account[]> {
+    return this.createQueryBuilder()
+      .where('user_phone = :userPhone', { userPhone })
+      .getMany()
+  }
 }

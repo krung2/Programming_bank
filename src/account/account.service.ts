@@ -80,4 +80,9 @@ export class AccountService {
 
     return this.accountRepository.findAccountByPhone(userPhone);
   }
+
+  public async findMyAccounts(user: User): Promise<Account[]> {
+
+    return this.accountRepository.findMyAccounts(user.phone);
+  }
 }
