@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { Container } from 'typeorm-typedi-extensions';
-import { TokenController } from './controller/token.controller';
-import { TokenService } from './service/token.service';
+import { TokenController } from './token.controller';
+import { TokenService } from './token.service';
 
 const a: ConfigService = Container.get(ConfigService);
 
