@@ -15,6 +15,9 @@ export default class Account {
   })
   money: number;
 
+  @Column()
+  password: string;
+
   @RelationId((authentication: Authentication) => authentication.user)
   userPhone!: string;
 
