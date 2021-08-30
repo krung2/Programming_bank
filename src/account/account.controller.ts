@@ -1,5 +1,5 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Token } from 'src/global/decorators/token.decorators';
 import AuthGaurd from 'src/global/gaurds/auth.gaurd';
 import BaseResponse from 'src/global/response/base.response';
@@ -7,7 +7,9 @@ import User from 'src/user/entities/user.entity';
 import { AccountService } from './account.service';
 import AddAccountDto from './dto/addAccount.dto';
 import Account from './entities/account.entity';
+import { AddAccountResponse } from './responses/addAccountRes.dto';
 
+@ApiTags('account')
 @Controller('account')
 export class AccountController {
 
@@ -18,6 +20,10 @@ export class AccountController {
   @Post('')
   @ApiBearerAuth()
   @UseGuards(AuthGaurd)
+  @ApiOkResponse({
+    description: '계좌 개설 성공',
+    type: AddAccountResponse,
+  })
   async addAccount(
     @Token() user: User,
     @Body() addAccountDto: AddAccountDto,

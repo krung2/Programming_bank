@@ -1,0 +1,1 @@
+export const accountPwPattern: RegExp = /^\d{4}$/g;

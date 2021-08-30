@@ -1,8 +1,10 @@
 import { ConflictException, ForbiddenException, HttpException, Injectable } from '@nestjs/common';
+import { sha512 } from 'js-sha512';
 import { AccountConst } from 'src/global/constants/account.const';
-import { isDiffrentUtil, isSameUtil } from 'src/global/utils/Comparison.util';
+import { accountPwPattern } from 'src/global/patterns/accountPattern';
+import { isDiffrentUtil } from 'src/global/utils/Comparison.util';
 import { randomNum0To9 } from 'src/global/utils/RandomNum.util';
-import { validationData } from 'src/global/utils/validationData.util';
+import { validationData, validationPattern } from 'src/global/utils/validationData.util';
 import User from 'src/user/entities/user.entity';
 import AddAccountDto from './dto/addAccount.dto';
 import Account from './entities/account.entity';
@@ -16,6 +18,11 @@ export class AccountService {
   ) { }
 
   public async addAccount(user: User, addAccountDto: AddAccountDto): Promise<Account> {
+
+    if (validationPattern(accountPwPattern, addAccountDto.password)) {
+
+      throw new ForbiddenException('비밀번호는 4자리여야 합니다');
+    }
 
     const accountArr: number[] = new Array();
 
@@ -33,7 +40,7 @@ export class AccountService {
       return this.accountRepository.save({
         accountId,
         money: 0,
-        password: addAccountDto.password,
+        password: sha512(addAccountDto.password),
         user,
       });
     } catch (err) {
