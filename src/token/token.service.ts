@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
 import { IToken } from 'src/global/interfaces/IToken';
 import { ITokenPayload } from 'src/global/interfaces/ITokenPayload';
+import { isDiffrentUtil } from 'src/global/utils/Comparison.util';
 import ReissuanceDto from './dto/reissuance.dto';
 
 @Injectable()
@@ -45,14 +46,14 @@ export class TokenService {
 
   public async accessTokenReissuance(reissuanceDto: ReissuanceDto): Promise<string> {
 
-    const verifyToken: IToken = await this.verifyToken(reissuanceDto.refreshToken);
+    const { iss, sub, userPhone }: IToken = await this.verifyToken(reissuanceDto.refreshToken);
 
-    if (verifyToken.iss !== 'kaBank' && verifyToken.sub !== 'refreshToken') {
+    if (isDiffrentUtil(iss, 'kaBank') && isDiffrentUtil(sub, 'refreshToken')) {
 
-      throw new UnauthorizedException('토큰이 잘못됨 위조되었습니다');
+      throw new UnauthorizedException('토큰이 위조되었습니다');
     }
 
-    return this.generateAccessToken(verifyToken.userPhone);
+    return this.generateAccessToken(userPhone);
   }
 
   async verifyToken(token: string): Promise<IToken> {

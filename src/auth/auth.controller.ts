@@ -5,6 +5,7 @@ import { UserService } from '../user/user.service';
 import RegisterDto from './dto/register.dto';
 import LoginDto from './dto/login.dto';
 import LoginResponseDto, { ILoginResponse } from './responses/loginRes.dto';
+import { AuthService } from './auth.service';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -12,6 +13,7 @@ export class AuthController {
 
   constructor(
     private readonly userService: UserService,
+    private readonly authService: AuthService,
   ) { }
 
   @Post('/register')
@@ -44,4 +46,5 @@ export class AuthController {
 
     return new BaseResponse<LoginResponseDto>(HttpStatus.OK, '로그인 성공', loginResponse);
   }
+
 }

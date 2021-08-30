@@ -17,6 +17,8 @@ export default class Authentication {
   })
   user!: User;
 
-  @Column()
+  @Column({
+    select: false,
+  })
   key!: string;
 }
