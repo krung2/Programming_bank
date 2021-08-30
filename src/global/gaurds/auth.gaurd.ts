@@ -6,17 +6,23 @@ import { Container } from "typeorm-typedi-extensions";
 import { IToken } from "../interfaces/IToken";
 import AuthRequest from "../types/AuthRequest";
 import { isDiffrentUtil } from "../utils/Comparison.util";
+import { vaildationData } from "../utils/validationData.util";
 
 @Injectable()
 export default class AuthGaurd implements CanActivate {
+
+  constructor(
+    private readonly tokenService: TokenService,
+    private readonly userSerivce: UserService,
+  ) { }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
 
     const request: AuthRequest = context.switchToHttp().getRequest();
 
-    const token: string | string[] = request.headers['Authorization'];
+    const token: string | string[] = request.headers['authorization'];
 
-    if (token === undefined) {
+    if (vaildationData(token)) {
 
       throw new UnauthorizedException('토큰이 전송되지 않았습니다');
     }
@@ -26,14 +32,21 @@ export default class AuthGaurd implements CanActivate {
       throw new UnauthorizedException('잘못된 토큰입니다');
     }
 
-    const { iss, sub, userPhone }: IToken = await Container.get(TokenService).verifyToken(token);
+    const cuttingToken: string[] = token.split('Bearer ');
+
+    if (vaildationData(cuttingToken[0])) {
+
+      throw new UnauthorizedException('잘못된 토큰입니다');
+    }
+
+    const { iss, sub, userPhone }: IToken = await this.tokenService.verifyToken(cuttingToken[1]);
 
     if (isDiffrentUtil(iss, 'kaBank') && isDiffrentUtil(sub, 'token')) {
 
       throw new UnauthorizedException('토큰이 위조되었습니다');
     }
 
-    const user: User = await Container.get(UserService).findUserByPhone(userPhone);
+    const user: User = await this.userSerivce.findUserByPhone(userPhone);
 
     request.user = user;
 

@@ -1,6 +1,10 @@
 import { createParamDecorator, ExecutionContext } from "@nestjs/common";
+import AuthRequest from "../types/AuthRequest";
 
-export const User: ParameterDecorator = createParamDecorator((data: any, ctx: ExecutionContext): ParameterDecorator => {
+export const Token = createParamDecorator(
+  (data: any, ctx: ExecutionContext) => {
 
-  return ctx.switchToHttp().getRequest().user;
-})
+    const request: AuthRequest = ctx.switchToHttp().getRequest();
+
+    return request.user;
+  })

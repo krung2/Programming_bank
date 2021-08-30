@@ -2,7 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import BaseResponse from "src/global/response/base.response";
 import User from "../entities/user.entity";
 
-export default class LoginResponseDto {
+export default class LoginResponseData {
 
   public user!: User;
   public token: string;
@@ -19,10 +19,10 @@ export default class LoginResponseDto {
   }
 }
 
-export class ILoginResponse extends BaseResponse<LoginResponseDto> {
+export class ILoginResponse extends BaseResponse<LoginResponseData> {
 
   @ApiProperty({
-    type: () => LoginResponseDto
+    type: () => LoginResponseData
   })
-  data: LoginResponseDto;
+  data: LoginResponseData;
 }
