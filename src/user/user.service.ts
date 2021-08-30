@@ -5,7 +5,7 @@ import User from 'src/auth/entities/user.entity';
 import LoginDto from 'src/auth/dto/login.dto';
 import RegisterDto from 'src/auth/dto/register.dto';
 import LoginResponseDto from 'src/auth/responses/loginRes.dto';
-import { vaildationData } from 'src/global/utils/validationData.util';
+import { validationData } from 'src/global/utils/validationData.util';
 
 @Injectable()
 export class UserService {
@@ -19,7 +19,7 @@ export class UserService {
 
     const user: User | undefined = await this.userRepository.findByPhone(registerDto.phone);
 
-    if (vaildationData(user)) {
+    if (validationData(user)) {
 
       throw new ForbiddenException('중복된 계정입니다');
     }
@@ -31,7 +31,7 @@ export class UserService {
 
     const user: User | undefined = await this.userRepository.findById(loginDto.id, loginDto.pw);
 
-    if (vaildationData(user)) {
+    if (validationData(user)) {
 
       throw new UnauthorizedException('id 또는 pw가 일치하지 않습니다');
     }
@@ -46,7 +46,7 @@ export class UserService {
 
     const user: User | undefined = await this.userRepository.findByPhone(userPhone);
 
-    if (vaildationData(user)) {
+    if (validationData(user)) {
 
       throw new UnauthorizedException('존재하지 않는 유저입니다');
     }

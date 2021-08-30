@@ -1,4 +1,4 @@
-import { Column, PrimaryColumn, Entity, OneToOne } from "typeorm";
+import { Column, PrimaryColumn, Entity, OneToOne, OneToMany } from "typeorm";
 import Authentication from "./authentication.entity";
 
 @Entity('user')
@@ -23,6 +23,6 @@ export default class User {
   @Column()
   birth: string;
 
-  @OneToOne(type => Authentication, authentication => authentication.user)
-  authentication!: Authentication | null;
+  @OneToMany(type => Authentication, authentication => authentication.user)
+  authentication!: Authentication[];
 }

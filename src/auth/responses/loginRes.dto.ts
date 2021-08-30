@@ -19,7 +19,7 @@ export default class LoginResponseData {
   }
 }
 
-export class ILoginResponse extends BaseResponse<LoginResponseData> {
+export class LoginResponse extends BaseResponse<LoginResponseData> {
 
   @ApiProperty({
     type: () => LoginResponseData

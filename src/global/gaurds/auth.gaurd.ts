@@ -2,11 +2,10 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from
 import User from "src/auth/entities/user.entity";
 import { TokenService } from "src/token/token.service";
 import { UserService } from "src/user/user.service";
-import { Container } from "typeorm-typedi-extensions";
 import { IToken } from "../interfaces/IToken";
 import AuthRequest from "../types/AuthRequest";
 import { isDiffrentUtil } from "../utils/Comparison.util";
-import { vaildationData } from "../utils/validationData.util";
+import { validationData } from "../utils/validationData.util";
 
 @Injectable()
 export default class AuthGaurd implements CanActivate {
@@ -22,7 +21,7 @@ export default class AuthGaurd implements CanActivate {
 
     const token: string | string[] = request.headers['authorization'];
 
-    if (vaildationData(token)) {
+    if (validationData(token)) {
 
       throw new UnauthorizedException('토큰이 전송되지 않았습니다');
     }
@@ -34,7 +33,7 @@ export default class AuthGaurd implements CanActivate {
 
     const cuttingToken: string[] = token.split('Bearer ');
 
-    if (vaildationData(cuttingToken[0])) {
+    if (validationData(cuttingToken[0])) {
 
       throw new UnauthorizedException('잘못된 토큰입니다');
     }

@@ -1,0 +1,1 @@
+export const easyLoginPwPattern: RegExp = /^\d{6}$/g;

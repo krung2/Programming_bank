@@ -1,17 +1,17 @@
-import { PrimaryGeneratedColumn, Column, Entity, RelationId, OneToOne, JoinColumn } from "typeorm";
+import { PrimaryGeneratedColumn, Column, Entity, RelationId, ManyToOne, JoinColumn } from "typeorm";
 import User from "./user.entity";
 
 @Entity('authentication')
 export default class Authentication {
 
-  @PrimaryGeneratedColumn()
-  idx!: number;
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
   @RelationId((authentication: Authentication) => authentication.user)
   userPhone!: string;
 
   @JoinColumn({ name: 'user_id' })
-  @OneToOne(type => User, {
+  @ManyToOne(type => User, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
