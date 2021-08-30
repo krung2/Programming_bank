@@ -8,7 +8,6 @@ export default class BaseResponse<T> {
   @ApiProperty()
   message: string;
 
-  @ApiProperty()
   data?: T;
 
   constructor(

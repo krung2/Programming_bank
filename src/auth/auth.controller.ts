@@ -4,6 +4,7 @@ import BaseResponse from 'src/global/response/base.response';
 import { UserService } from './services/user.service';
 import RegisterDto from './dto/register.dto';
 import LoginDto from './dto/login.dto';
+import LoginResponseDto, { ILoginResponse } from './responses/loginRes.dto';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -33,11 +34,13 @@ export class AuthController {
   @HttpCode(200)
   @ApiOkResponse({
     description: '로그인 성공',
-    type: BaseResponse
+    type: ILoginResponse
   })
   async login(
-    @Body() loginDto: LoginDto
-  ) {
+    @Body() loginDto: LoginDto,
+  ): Promise<BaseResponse<LoginResponseDto>> {
 
+
+    return new BaseResponse<LoginResponseDto>(HttpStatus.OK, '로그인 성공');
   }
 }
