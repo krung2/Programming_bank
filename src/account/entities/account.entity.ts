@@ -15,7 +15,9 @@ export default class Account {
   })
   money: number;
 
-  @Column()
+  @Column({
+    select: false
+  })
   password: string;
 
   @RelationId((authentication: Authentication) => authentication.user)

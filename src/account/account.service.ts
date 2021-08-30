@@ -75,4 +75,9 @@ export class AccountService {
 
     return account;
   }
+
+  public async findAccountByPhone(userPhone: string): Promise<Account[]> {
+
+    return this.accountRepository.findAccountByPhone(userPhone);
+  }
 }
