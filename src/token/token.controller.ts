@@ -2,7 +2,7 @@ import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { ApiBadRequestResponse, ApiGoneResponse, ApiOkResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import BaseResponse from 'src/global/response/base.response';
 import ReissuanceDto from './dto/reissuance.dto';
-import ReissuanceResponseData, { IReissuanceResponse } from './responses/reissuance.response';
+import ReissuanceResponseData, { IReissuanceResponse } from './responses/reissuanceRes.dto';
 import { TokenService } from './token.service';
 
 @ApiTags('token')
