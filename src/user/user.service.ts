@@ -1,7 +1,7 @@
 import { ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { TokenService } from 'src/token/token.service';
 import UserRepository from './repositories/user.repository';
-import User from 'src/auth/entities/user.entity';
+import User from 'src/user/entities/user.entity';
 import LoginDto from 'src/auth/dto/login.dto';
 import RegisterDto from 'src/auth/dto/register.dto';
 import LoginResponseDto from 'src/auth/responses/loginRes.dto';

@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import BaseResponse from "src/global/response/base.response";
-import User from "../entities/user.entity";
+import User from "../../user/entities/user.entity";
 
 export default class LoginResponseData {
 

@@ -1,5 +1,5 @@
 import { Column, PrimaryColumn, Entity, OneToOne, OneToMany } from "typeorm";
-import Authentication from "./authentication.entity";
+import Authentication from "../../auth/entities/authentication.entity";
 
 @Entity('user')
 export default class User {

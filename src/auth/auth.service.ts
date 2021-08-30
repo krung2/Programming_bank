@@ -4,7 +4,7 @@ import { validationData, validationPattern } from 'src/global/utils/validationDa
 import { TokenService } from 'src/token/token.service';
 import EasyLoginRegisterDto from './dto/easyLoginRegister.dto';
 import Authentication from './entities/authentication.entity';
-import User from './entities/user.entity';
+import User from '../user/entities/user.entity';
 import AuthenticationRepository from './repositories/auth.repository';
 import { sha512 } from 'js-sha512';
 import EasyLoginDto from './dto/easyLogin.dto';

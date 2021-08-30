@@ -10,7 +10,7 @@ import EasyLoginRegisterDto from './dto/easyLoginRegister.dto';
 import AuthGaurd from 'src/global/gaurds/auth.gaurd';
 import Authentication from './entities/authentication.entity';
 import { Token } from 'src/global/decorators/token.decorators';
-import User from './entities/user.entity';
+import User from '../user/entities/user.entity';
 import { EasyLoginRegisterResponse } from './responses/easyLoginRegisterRes.dto';
 import EasyLoginDto from './dto/easyLogin.dto';
 
