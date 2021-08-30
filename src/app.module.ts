@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { validate } from './config/env.validation';
 import { AuthModule } from './auth/auth.module';
+import { TokenModule } from './token/token.module';
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { AuthModule } from './auth/auth.module';
       cache: true,
       validate,
     }),
-    AuthModule
+    AuthModule,
+    TokenModule
   ],
   controllers: [AppController],
   providers: [AppService],

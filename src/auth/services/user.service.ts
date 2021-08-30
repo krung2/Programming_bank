@@ -1,13 +1,17 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { TokenService } from 'src/token/service/token.service';
+import LoginDto from '../dto/login.dto';
 import RegisterDto from '../dto/register.dto';
 import User from '../entities/user.entity';
 import UserRepository from '../repositories/user.repository';
+import LoginResponseDto from '../responses/loginRes.dto';
 
 @Injectable()
 export class UserService {
 
   constructor(
     private readonly userRepository: UserRepository,
+    private readonly tokenService: TokenService,
   ) { }
 
   public async register(registerDto: RegisterDto): Promise<void> {
@@ -20,5 +24,20 @@ export class UserService {
     }
 
     await this.userRepository.save(registerDto);
+  }
+
+  public async login(loginDto: LoginDto): Promise<LoginResponseDto> {
+
+    const user: User | undefined = await this.userRepository.findById(loginDto.id, loginDto.pw);
+
+    if (user === undefined) {
+
+      throw new UnauthorizedException('id 또는 pw가 일치하지 않습니다');
+    }
+
+    const token: string = this.tokenService.generateAccessToken(user);
+    const refreshToken: string = this.tokenService.generateRefreshToken(user);
+
+    return new LoginResponseDto(user, token, refreshToken);
   }
 }

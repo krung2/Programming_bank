@@ -25,4 +25,7 @@ export class EnviromentVariables {
 
   @IsNumber()
   REDIS_PORT: number;
+
+  @IsString()
+  JWT_SECRET: string;
 }
