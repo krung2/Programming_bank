@@ -6,6 +6,7 @@ import SendMoneyDto from './dto/sendMoney.dto';
 import Receive from './entities/receive.entity';
 import Send from './entities/send.entity';
 import { RemittanceService } from './remittance.service';
+import { FindReceiveRecordResponse } from './responses/findReceiveRecordRes.dto';
 import { FindSendRecordResponse } from './responses/findSendRecordRes.dto';
 
 @ApiTags('remittance')
@@ -76,8 +77,8 @@ export class RemittanceController {
   @Post('/record/receive')
   @HttpCode(200)
   @ApiOkResponse({
-    description: '송금 완료',
-    type: BaseResponse
+    description: '계좌 수금 내역 조회 완료',
+    type: FindReceiveRecordResponse
   })
   @ApiForbiddenResponse({
     description: '잘못된 계좌번호입니다'
@@ -88,6 +89,6 @@ export class RemittanceController {
 
     const receiveRecords: Receive[] = await this.remittanceService.findRecieveRecordByAccountId(findSendRecordDto.accountId);
 
-    return new BaseResponse<Receive[]>(200, '입금 받기 성공', receiveRecords);
+    return new BaseResponse<Receive[]>(200, '계좌 수금 내역 조회 완료', receiveRecords);
   }
 }
