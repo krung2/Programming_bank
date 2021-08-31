@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { TokenModule } from './token/token.module';
 import { UserModule } from './user/user.module';
 import { AccountModule } from './account/account.module';
+import { RemittanceModule } from './remittance/remittance.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { AccountModule } from './account/account.module';
     AuthModule,
     TokenModule,
     UserModule,
-    AccountModule
+    AccountModule,
+    RemittanceModule
   ],
   controllers: [AppController],
   providers: [AppService],

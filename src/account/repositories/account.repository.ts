@@ -1,4 +1,4 @@
-import { EntityRepository, Repository } from "typeorm";
+import { EntityManager, EntityRepository, Repository, TransactionManager } from "typeorm";
 import Account from "../entities/account.entity";
 
 @EntityRepository(Account)
@@ -20,5 +20,9 @@ export default class AccountRepository extends Repository<Account> {
     return this.createQueryBuilder()
       .where('user_phone = :userPhone', { userPhone })
       .getMany()
+  }
+
+  public changeMoney(@TransactionManager() manager: EntityManager, account: Account): Promise<Account> {
+    return manager.save<Account>(account);
   }
 }

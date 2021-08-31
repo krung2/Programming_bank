@@ -37,6 +37,7 @@ export class AccountController {
   }
 
   @Get('/find/my')
+  @UseGuards(AuthGaurd)
   @ApiBearerAuth()
   @ApiOkResponse({
     description: '나의 카뱅 계좌 조회 성공',
