@@ -1,8 +1,10 @@
 import { ConflictException, ForbiddenException, HttpException, Injectable } from '@nestjs/common';
 import { sha512 } from 'js-sha512';
 import { AccountConst } from 'src/global/constants/account.const';
+import { BankEndPoint } from 'src/global/constants/bankEndPoint.const';
 import { accountPwPattern } from 'src/global/patterns/accountPattern';
 import { isDiffrentUtil } from 'src/global/utils/Comparison.util';
+import { customAxiosUtil } from 'src/global/utils/CustomAxiosUtil';
 import { randomNum0To9 } from 'src/global/utils/RandomNum.util';
 import { validationData, validationPattern } from 'src/global/utils/validationData.util';
 import User from 'src/user/entities/user.entity';
@@ -92,18 +94,18 @@ export class AccountService {
 
     let account: Account = await this.findAccountByAccountId(accountId);
 
+    const changeMoney: number = Number(account.money) + money;
+    account.money = changeMoney;
+
     await this.connection.transaction('SERIALIZABLE', async manager => {
 
-      account = await this.accountRepository.changeMoney(manager, account, account.money + money)
+      account = await this.accountRepository.changeMoney(manager, account)
     });
 
     return account;
   }
 
-
-  public async sendMoney(accountId: string, money: number): Promise<Account> {
-
-    let account: Account = await this.findAccountByAccountId(accountId);
+  public async sendMoney(bankEndPoint: BankEndPoint, account: Account, receiveId: string, money: number): Promise<Account> {
 
     const changeMoney: number = account.money - money;
 
@@ -112,9 +114,17 @@ export class AccountService {
       throw new ForbiddenException('잔액이 모자랍니다');
     }
 
+    account.money = changeMoney;
+
     await this.connection.transaction('SERIALIZABLE', async manager => {
 
-      account = await this.accountRepository.changeMoney(manager, account, changeMoney)
+      account = await this.accountRepository.changeMoney(manager, account)
+
+      await customAxiosUtil.post(bankEndPoint, {
+        sendId: account.accountId,
+        receiveId,
+        money,
+      });
     });
 
     return account

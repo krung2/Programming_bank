@@ -22,10 +22,7 @@ export default class AccountRepository extends Repository<Account> {
       .getMany()
   }
 
-  public changeMoney(@TransactionManager() manager: EntityManager, account: Account, money: number): Promise<Account> {
-    return manager.save<Account>({
-      ...account,
-      money,
-    });
+  public changeMoney(@TransactionManager() manager: EntityManager, account: Account): Promise<Account> {
+    return manager.save<Account>(account);
   }
 }
