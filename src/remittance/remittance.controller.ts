@@ -9,4 +9,5 @@ export class RemittanceController {
   constructor(
     private readonly remittanceService: RemittanceService,
   ) { }
+
 }

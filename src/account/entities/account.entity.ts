@@ -1,4 +1,5 @@
 import Receive from "src/remittance/entities/receive.entity";
+import Send from "src/remittance/entities/send.entity";
 import User from "src/user/entities/user.entity";
 import { Column, PrimaryColumn, Entity, ManyToOne, JoinColumn, RelationId, OneToMany } from "typeorm";
 import Authentication from "../../auth/entities/authentication.entity";
@@ -33,4 +34,7 @@ export default class Account {
 
   @OneToMany(type => Receive, receive => receive.account)
   receive!: Receive[];
+
+  @OneToMany(type => Send, send => send.account)
+  send!: Send[];
 }
