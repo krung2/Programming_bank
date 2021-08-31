@@ -20,8 +20,10 @@ export default class Receive {
   })
   account!: Account;
 
-  @Column()
-  money: string;
+  @Column({
+    type: 'varchar'
+  })
+  money: number;
 
   @CreateDateColumn({
     name: 'created_at'

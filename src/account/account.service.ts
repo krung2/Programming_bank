@@ -90,9 +90,7 @@ export class AccountService {
     return this.accountRepository.findMyAccounts(user.phone);
   }
 
-  public async receiveMoney(accountId: string, money: number): Promise<Account> {
-
-    let account: Account = await this.findAccountByAccountId(accountId);
+  public async receiveMoney(account: Account, money: number): Promise<Account> {
 
     const changeMoney: number = Number(account.money) + money;
     account.money = changeMoney;
@@ -107,7 +105,7 @@ export class AccountService {
 
   public async sendMoney(bankEndPoint: BankEndPoint, account: Account, receiveId: string, money: number): Promise<Account> {
 
-    const changeMoney: number = account.money - money;
+    const changeMoney: number = Number(account.money) - money;
 
     if (changeMoney < 0) {
 
