@@ -19,9 +19,9 @@ services:
       DATABASE_DATABASE: ${DATABASE_DATABASE}
 
       JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRE: ${JWT_EXPIRE}
+      JWT_REFRESH_EXPIRE: ${JWT_REFRESH_EXPIRE}
       
-      REDIS_HOST: ${REDIS_HOST}
-      REDIS_PORT: ${REDIS_PORT} 
       
   mysql:
     image: mysql:5.7
