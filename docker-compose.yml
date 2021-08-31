@@ -29,7 +29,7 @@ services:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
     env_file: 
-      - .env
+      - mysql.env
     environment:
       - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD}
       - MYSQL_DATABASE=${DATABASE_DATABASE}
