@@ -19,7 +19,7 @@ export class UserService {
 
     const user: User | undefined = await this.userRepository.findByPhone(registerDto.phone);
 
-    if (validationData(user)) {
+    if (!validationData(user)) {
 
       throw new ForbiddenException('중복된 계정입니다');
     }
