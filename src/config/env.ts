@@ -21,11 +21,11 @@ export class EnviromentVariables {
   DATABASE_DATABASE: string;
 
   @IsString()
-  REDIS_HOST: string;
-
-  @IsNumber()
-  REDIS_PORT: number;
+  JWT_SECRET: string;
 
   @IsString()
-  JWT_SECRET: string;
+  JWT_EXPIRE: string;
+
+  @IsString()
+  JWT_REFRESH_EXPIRE: string;
 }
