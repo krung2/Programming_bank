@@ -103,7 +103,7 @@ export class AccountService {
     return account;
   }
 
-  public async sendMoney(bankEndPoint: BankEndPoint, account: Account, receiveId: string, money: number): Promise<Account> {
+  public async sendMoney(bankEndPoint: BankEndPoint, account: Account, receiveAccountId: string, money: number): Promise<Account> {
 
     const changeMoney: number = Number(account.money) - money;
 
@@ -119,8 +119,8 @@ export class AccountService {
       account = await this.accountRepository.changeMoney(manager, account)
 
       await customAxiosUtil.post(bankEndPoint, {
-        sendId: account.accountId,
-        receiveId,
+        sendAccountId: account.accountId,
+        receiveAccountId,
         money,
       });
     });

@@ -13,7 +13,7 @@ export default class Receive {
   @RelationId((receive: Receive) => receive.account)
   accountId!: string;
 
-  @JoinColumn({ name: 'reciever_id' })
+  @JoinColumn({ name: 'receiver_id' })
   @ManyToOne(type => Account, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',

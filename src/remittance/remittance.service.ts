@@ -7,7 +7,7 @@ import SendMoneyDto from './dto/sendMoney.dto';
 import Receive from './entities/receive.entity';
 import Send from './entities/send.entity';
 import ReceiveRepository from './repositories/receive.repository';
-import SendRepository from './repositories/sned.repository';
+import SendRepository from './repositories/send.repository';
 
 @Injectable()
 export class RemittanceService {
@@ -55,8 +55,18 @@ export class RemittanceService {
       money,
     });
     createSendRecord.account = account;
-    await this.sendRepository.save(createSendRecord);
+    await this.receiveRepository.save(createSendRecord);
 
     return this.accountService.receiveMoney(account, money);
+  }
+
+  public findSendRecordByAccountId(accountId: string): Promise<Send[]> {
+
+    return this.sendRepository.findSendRecordByAccountId(accountId);
+  }
+
+  public findRecieveRecordByAccountId(accountId: string): Promise<Receive[]> {
+
+    return this.receiveRepository.findReceiveRecordByAccountId(accountId);
   }
 }
