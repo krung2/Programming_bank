@@ -1,5 +1,6 @@
+import Receive from "src/remittance/entities/receive.entity";
 import User from "src/user/entities/user.entity";
-import { Column, PrimaryColumn, Entity, ManyToOne, JoinColumn, RelationId } from "typeorm";
+import { Column, PrimaryColumn, Entity, ManyToOne, JoinColumn, RelationId, OneToMany } from "typeorm";
 import Authentication from "../../auth/entities/authentication.entity";
 
 @Entity('account')
@@ -29,4 +30,7 @@ export default class Account {
     onUpdate: 'CASCADE',
   })
   user!: User;
+
+  @OneToMany(type => Receive, receive => receive.account)
+  receive!: Receive[];
 }
