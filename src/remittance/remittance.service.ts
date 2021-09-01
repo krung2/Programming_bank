@@ -4,6 +4,7 @@ import { AccountService } from 'src/account/account.service';
 import Account from 'src/account/entities/account.entity';
 import { bankCheckUtil } from 'src/global/utils/BankCheckUtil';
 import { isSameUtil } from 'src/global/utils/Comparison.util';
+import ReceiveMoneyDto from './dto/receiveMoney.dto';
 import SendMoneyDto from './dto/sendMoney.dto';
 import Receive from './entities/receive.entity';
 import Send from './entities/send.entity';
@@ -45,9 +46,9 @@ export class RemittanceService {
     );
   }
 
-  public async receiveMoney(sendMoneyDto: SendMoneyDto): Promise<Account> {
+  public async receiveMoney(receiveMoneyDto: ReceiveMoneyDto): Promise<Account> {
 
-    const { sendAccountId, receiveAccountId, money } = sendMoneyDto;
+    const { sendAccountId, receiveAccountId, money } = receiveMoneyDto;
 
     const account: Account = await this.accountService.findAccountByAccountId(receiveAccountId);
 

@@ -2,6 +2,7 @@ import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { ApiConflictResponse, ApiForbiddenResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import BaseResponse from 'src/global/response/base.response';
 import FindSendRecordDto from './dto/findSendRecord.dto';
+import ReceiveMoneyDto from './dto/receiveMoney.dto';
 import SendMoneyDto from './dto/sendMoney.dto';
 import Receive from './entities/receive.entity';
 import Send from './entities/send.entity';
@@ -41,17 +42,17 @@ export class RemittanceController {
   @Post('/receive')
   @HttpCode(200)
   @ApiOkResponse({
-    description: '송금 완료',
+    description: '입금 받기 성공',
     type: BaseResponse
   })
   @ApiForbiddenResponse({
     description: '잘못된 계좌번호입니다'
   })
   async receiveMony(
-    @Body() sendMoneyDto: SendMoneyDto,
+    @Body() receiveMoneyDto: ReceiveMoneyDto,
   ): Promise<BaseResponse<undefined>> {
 
-    await this.remittanceService.receiveMoney(sendMoneyDto);
+    await this.remittanceService.receiveMoney(receiveMoneyDto);
 
     return new BaseResponse<undefined>(200, '입금 받기 성공');
   }
