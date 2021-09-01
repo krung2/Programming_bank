@@ -1,4 +1,5 @@
 import { ConflictException, ForbiddenException, Injectable } from '@nestjs/common';
+import { sha512 } from 'js-sha512';
 import { AccountService } from 'src/account/account.service';
 import Account from 'src/account/entities/account.entity';
 import { bankCheckUtil } from 'src/global/utils/BankCheckUtil';
@@ -27,7 +28,7 @@ export class RemittanceService {
       throw new ConflictException('자기 자신에게 보낼 수 없습니다');
     }
 
-    const account: Account = await this.accountService.findAccountByAccountIdWithPw(sendAccountId, sendAccountPw);
+    const account: Account = await this.accountService.findAccountByAccountIdWithPw(sendAccountId, sha512(sendAccountPw));
 
     const createSendRecord: Send = this.sendRepository.create({
       reciverId: receiveAccountId,
