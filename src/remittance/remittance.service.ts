@@ -20,14 +20,14 @@ export class RemittanceService {
 
   public async sendMoney(sendMoneyDto: SendMoneyDto): Promise<Account> {
 
-    const { sendAccountId, receiveAccountId, money }: SendMoneyDto = sendMoneyDto;
+    const { sendAccountId, sendAccountPw, receiveAccountId, money }: SendMoneyDto = sendMoneyDto;
 
     if (isSameUtil(sendAccountId, receiveAccountId)) {
 
       throw new ConflictException('자기 자신에게 보낼 수 없습니다');
     }
 
-    const account: Account = await this.accountService.findAccountByAccountId(sendAccountId);
+    const account: Account = await this.accountService.findAccountByAccountIdWithPw(sendAccountId, sendAccountPw);
 
     const createSendRecord: Send = this.sendRepository.create({
       reciverId: receiveAccountId,

@@ -16,6 +16,13 @@ export default class AccountRepository extends Repository<Account> {
       .getOne();
   }
 
+  public findAccountByAccountIdWithPw(accountId: string, accountPw): Promise<Account | undefined> {
+    return this.createQueryBuilder()
+      .where('account_id = :accountId', { accountId })
+      .where('password = :accountPw', { accountPw })
+      .getOne();
+  }
+
   public findMyAccounts(userPhone: string): Promise<Account[]> {
     return this.createQueryBuilder()
       .where('user_phone = :userPhone', { userPhone })

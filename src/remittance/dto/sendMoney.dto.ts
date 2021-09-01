@@ -9,6 +9,10 @@ export default class SendMoneyDto {
 
   @ApiProperty()
   @IsNotEmpty()
+  sendAccountPw!: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
   receiveAccountId!: string;
 
   @ApiProperty()

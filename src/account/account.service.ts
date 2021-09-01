@@ -80,6 +80,18 @@ export class AccountService {
     return account;
   }
 
+  public async findAccountByAccountIdWithPw(accountId: string, accountPw: string): Promise<Account> {
+
+    const account: Account | undefined = await this.accountRepository.findAccountByAccountIdWithPw(accountId, accountPw);
+
+    if (validationData(account)) {
+
+      throw new ForbiddenException('등록되지 않은 계좌 번호, 혹은 비밀번호 입니다');
+    }
+
+    return account;
+  }
+
   public async findAccountByPhone(userPhone: string): Promise<Account[]> {
 
     return this.accountRepository.findAccountByPhone(userPhone);
