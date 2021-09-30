@@ -1,3 +1,5 @@
+import Account from "src/apis/account/entities/account.entity";
+import MyAccount from "src/apis/account/entities/myAccount.entity";
 import { Column, PrimaryColumn, Entity, OneToOne, OneToMany } from "typeorm";
 import Authentication from "../../auth/entities/authentication.entity";
 
@@ -25,4 +27,10 @@ export default class User {
 
   @OneToMany(type => Authentication, authentication => authentication.user)
   authentication!: Authentication[];
+
+  @OneToMany(type => Account, account => account.user)
+  account!: Account[];
+
+  @OneToMany(type => MyAccount, myAccount => myAccount.user)
+  myAccount!: MyAccount[];
 }

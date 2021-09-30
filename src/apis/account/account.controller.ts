@@ -40,7 +40,7 @@ export class AccountController {
   @UseGuards(AuthGaurd)
   @ApiBearerAuth()
   @ApiOkResponse({
-    description: '나의 카뱅 계좌 조회 성공',
+    description: '나의 계좌 조회 성공',
     type: FindAccountManyResponse
   })
   @ApiForbiddenResponse({
@@ -52,7 +52,7 @@ export class AccountController {
 
     const accounts: Account[] = await this.accountService.findMyAccounts(user);
 
-    return new BaseResponse<Account[]>(200, '계좌 조회 성공', accounts);
+    return new BaseResponse<Account[]>(200, '나의 계좌 조회 성공', accounts);
   }
 
   @Get('/find/phone/:phone')
