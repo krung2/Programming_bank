@@ -21,7 +21,7 @@ export class EnviromentVariables {
   DATABASE_DATABASE: string;
 
   @IsString()
-  JWT_SECRET: string;
+  static JWT_SECRET: string;
 
   @IsString()
   JWT_EXPIRE: string;

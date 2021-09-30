@@ -1,7 +1,7 @@
 import { ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { easyLoginPwPattern } from 'src/global/patterns/easyLoginPattern';
 import { validationData, validationPattern } from 'src/global/utils/validationData.util';
-import { TokenService } from 'src/token/token.service';
+import { TokenService } from 'src/apis/token/token.service';
 import EasyLoginRegisterDto from './dto/easyLoginRegister.dto';
 import Authentication from './entities/authentication.entity';
 import User from '../user/entities/user.entity';

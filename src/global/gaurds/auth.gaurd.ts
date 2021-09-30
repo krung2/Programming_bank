@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
-import User from "src/user/entities/user.entity";
-import { TokenService } from "src/token/token.service";
-import { UserService } from "src/user/user.service";
+import User from "src/apis/user/entities/user.entity";
+import { TokenService } from "src/apis/token/token.service";
+import { UserService } from "src/apis/user/user.service";
 import { IToken } from "../interfaces/IToken";
 import AuthRequest from "../types/AuthRequest";
 import { isDiffrentUtil } from "../utils/Comparison.util";

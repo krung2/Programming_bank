@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AccountModule } from 'src/account/account.module';
+import { AccountModule } from 'src/apis/account/account.module';
 import { RemittanceController } from './remittance.controller';
 import { RemittanceService } from './remittance.service';
 import ReceiveRepository from './repositories/receive.repository';

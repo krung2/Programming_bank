@@ -1,15 +1,14 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { validate } from './config/env.validation';
-import { AuthModule } from './auth/auth.module';
-import { TokenModule } from './token/token.module';
-import { UserModule } from './user/user.module';
-import { AccountModule } from './account/account.module';
-import { RemittanceModule } from './remittance/remittance.module';
-import { DatabaseModule } from './database/database.module';
+import { AuthModule } from './apis/auth/auth.module';
+import { TokenModule } from './apis/token/token.module';
+import { UserModule } from './apis/user/user.module';
+import { AccountModule } from './apis/account/account.module';
+import { RemittanceModule } from './apis/remittance/remittance.module';
+import { DatabaseModule } from './config/database/database.module';
 
 @Module({
   imports: [

@@ -1,4 +1,4 @@
-import User from "src/user/entities/user.entity";
+import User from "src/apis/user/entities/user.entity";
 
 export default class AuthRequest extends Request {
 

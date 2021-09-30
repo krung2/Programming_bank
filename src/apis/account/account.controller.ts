@@ -3,7 +3,7 @@ import { ApiBearerAuth, ApiForbiddenResponse, ApiOkResponse, ApiTags } from '@ne
 import { Token } from 'src/global/decorators/token.decorators';
 import AuthGaurd from 'src/global/gaurds/auth.gaurd';
 import BaseResponse from 'src/global/response/base.response';
-import User from 'src/user/entities/user.entity';
+import User from 'src/apis/user/entities/user.entity';
 import { AccountService } from './account.service';
 import AddAccountDto from './dto/addAccount.dto';
 import Account from './entities/account.entity';

@@ -7,7 +7,7 @@ import { isDiffrentUtil } from 'src/global/utils/Comparison.util';
 import { customAxiosUtil } from 'src/global/utils/CustomAxiosUtil';
 import { randomNum0To9 } from 'src/global/utils/RandomNum.util';
 import { validationData, validationPattern } from 'src/global/utils/validationData.util';
-import User from 'src/user/entities/user.entity';
+import User from 'src/apis/user/entities/user.entity';
 import { Connection } from 'typeorm';
 import AddAccountDto from './dto/addAccount.dto';
 import Account from './entities/account.entity';

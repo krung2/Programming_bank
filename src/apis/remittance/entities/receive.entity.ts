@@ -1,19 +1,19 @@
-import Account from "src/account/entities/account.entity";
+import Account from "src/apis/account/entities/account.entity";
 import { PrimaryGeneratedColumn, Column, Entity, RelationId, ManyToOne, JoinColumn, CreateDateColumn } from "typeorm";
 
-@Entity('send')
-export default class Send {
+@Entity('receive')
+export default class Receive {
 
   @PrimaryGeneratedColumn()
   idx!: number;
 
   @Column()
-  reciverId: string;
+  senderId: string;
 
-  @RelationId((send: Send) => send.account)
+  @RelationId((receive: Receive) => receive.account)
   accountId!: string;
 
-  @JoinColumn({ name: 'sender_id' })
+  @JoinColumn({ name: 'receiver_id' })
   @ManyToOne(type => Account, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',

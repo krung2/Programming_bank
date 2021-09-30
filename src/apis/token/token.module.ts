@@ -4,10 +4,11 @@ import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { TokenController } from './token.controller';
 import { TokenService } from './token.service';
+import { EnviromentVariables } from 'src/config/env';
 
 @Module({
   imports: [
-    JwtModule.register({ secret: process.env.JWT_SECRET }),
+    JwtModule.register({ secret: EnviromentVariables.JWT_SECRET }),
     ConfigModule
   ],
   controllers: [TokenController],

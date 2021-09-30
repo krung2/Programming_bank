@@ -1,7 +1,7 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { sha512 } from 'js-sha512';
-import { AccountService } from 'src/account/account.service';
-import Account from 'src/account/entities/account.entity';
+import { AccountService } from 'src/apis/account/account.service';
+import Account from 'src/apis/account/entities/account.entity';
 import { bankCheckUtil } from 'src/global/utils/BankCheckUtil';
 import { isSameUtil } from 'src/global/utils/Comparison.util';
 import ReceiveMoneyDto from './dto/receiveMoney.dto';
