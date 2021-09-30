@@ -1,4 +1,4 @@
-import { ConflictException, ForbiddenException, Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { sha512 } from 'js-sha512';
 import { AccountService } from 'src/account/account.service';
 import Account from 'src/account/entities/account.entity';
