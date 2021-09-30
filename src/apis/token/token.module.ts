@@ -8,7 +8,7 @@ import { EnviromentVariables } from 'src/config/env';
 
 @Module({
   imports: [
-    JwtModule.register({ secret: EnviromentVariables.JWT_SECRET }),
+    JwtModule.register({ secret: process.env.JWT_SECRET }),
     ConfigModule
   ],
   controllers: [TokenController],

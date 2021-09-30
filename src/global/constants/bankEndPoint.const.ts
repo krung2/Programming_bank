@@ -3,4 +3,8 @@ export enum BankEndPoint {
   HY = '',
   JM = '',
   MG = '',
+  GJB = 'http://localhost:8081',
+  GHY = '',
+  GJM = '',
+  GMG = '',
 }

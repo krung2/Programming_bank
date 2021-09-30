@@ -1,5 +1,5 @@
 import User from "src/apis/user/entities/user.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('my_account')
 export default class MyAccount {

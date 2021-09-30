@@ -12,12 +12,18 @@ import { Connection } from 'typeorm';
 import AddAccountDto from './dto/addAccount.dto';
 import Account from './entities/account.entity';
 import AccountRepository from './repositories/account.repository';
+import MyAccountRepository from './repositories/myAccount.repository';
+import MyAccount from './entities/myAccount.entity';
+import { bankCheckUtil } from 'src/global/utils/BankCheckUtil';
+import { ActionCheckEnum } from 'src/global/enums/actionCheck.enum';
+import BaseResponse from 'src/global/response/base.response';
 
 @Injectable()
 export class AccountService {
 
   constructor(
     private readonly accountRepository: AccountRepository,
+    private readonly myAccountRepository: MyAccountRepository,
     private readonly connection: Connection,
   ) { }
 
@@ -30,7 +36,7 @@ export class AccountService {
 
     const accountArr: number[] = new Array();
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 9; i++) {
 
       accountArr.push(randomNum0To9());
     }
@@ -41,12 +47,19 @@ export class AccountService {
 
       await this.isValidAccount(accountId);
 
-      return this.accountRepository.save({
+      const saveAccount: Account = await this.accountRepository.save({
         accountId,
         money: 0,
         password: sha512(addAccountDto.password),
         user,
       });
+
+      await this.myAccountRepository.save({
+        user,
+        accountId,
+      })
+
+      return saveAccount;
     } catch (err) {
 
       if (!(err instanceof HttpException)) {
@@ -99,7 +112,23 @@ export class AccountService {
 
   public async findMyAccounts(user: User): Promise<Account[]> {
 
-    return this.accountRepository.findMyAccounts(user.phone);
+    const myAccount: MyAccount[] = await this.myAccountRepository.getMyAccountByUserId(user.id);
+    const myAccountList: Account[] = [];
+
+    myAccount.map(async ({ accountId }: MyAccount) => {
+      myAccountList.push(await this.findAccountById(accountId));
+    })
+
+    return myAccountList;
+  }
+
+  public async findAccountById(accountId: string): Promise<Account> {
+    try {
+      const { data }: { data: BaseResponse<Account> } = await customAxiosUtil.get(bankCheckUtil(accountId, ActionCheckEnum.GET))
+      return data.data;
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   public async receiveMoney(account: Account, money: number): Promise<Account> {
