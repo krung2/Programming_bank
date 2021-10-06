@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>sseTest</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    const sse = new EventSource('/sse');
+    sse.addEventListener('error', ({ data }) => {
+
+      const parsedData = JSON.parse(data);
+
+      const message = document.createElement('div');
+      message.innerText = parsedData.sendIp + ' : ' + parsedData.status + '  ' + parsedData.message;
+      document.body.appendChild(message);
+    })
+  </script>
+</body>
+
+</html>
