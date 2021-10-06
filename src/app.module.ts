@@ -10,6 +10,10 @@ import { AccountModule } from './apis/account/account.module';
 import { RemittanceModule } from './apis/remittance/remittance.module';
 import { DatabaseModule } from './config/database/database.module';
 import { PageModule } from './page/page.module';
+import { ErrorModule } from './apis/error/error.module';
+import { SseModule } from './apis/sse/sse.module';
+import { APP_FILTER } from '@nestjs/core';
+import { ErrorFilter } from './global/filters/error.filter';
 
 @Module({
   imports: [
@@ -25,10 +29,15 @@ import { PageModule } from './page/page.module';
     AccountModule,
     RemittanceModule,
     DatabaseModule,
-    PageModule
+    PageModule,
+    ErrorModule,
+    SseModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, {
+    provide: APP_FILTER,
+    useClass: ErrorFilter,
+  }],
 })
 
 export class AppModule { }
