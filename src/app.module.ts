@@ -9,6 +9,7 @@ import { UserModule } from './apis/user/user.module';
 import { AccountModule } from './apis/account/account.module';
 import { RemittanceModule } from './apis/remittance/remittance.module';
 import { DatabaseModule } from './config/database/database.module';
+import { PageModule } from './page/page.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { DatabaseModule } from './config/database/database.module';
     UserModule,
     AccountModule,
     RemittanceModule,
-    DatabaseModule
+    DatabaseModule,
+    PageModule
   ],
   controllers: [AppController],
   providers: [AppService],
