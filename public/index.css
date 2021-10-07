@@ -1,0 +1,204 @@
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+div {
+  display: block;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  color: #5e676f;
+  background: inherit;
+  margin: 0;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.4285714286;
+  color: #212529;
+  text-align: left;
+  background: #f9f9fa;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(19,24,44,0);
+}
+
+@media (max-width: 767.98px){
+  .padding {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 991.98px){
+  .padding {
+    padding: 1.5rem;
+  }
+}
+
+.padding {
+  padding: 2rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px 0 -15px;
+}
+
+.boxs, .staticBox, .transaction-history {
+  position: relative;
+  width: 100%;
+  padding: 0 15px 0 15px;
+}
+
+.staticBox {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.bankMoney {
+  color: #000000 !important;
+  background-color: #ffdc00 !important;
+}
+
+.block, .card {
+  background: #ffffff;
+  border-width: 0;
+  border-radius: .25rem;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 5%);
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #ffffff;
+  background-clip: border-box;
+  border: 1px solid rgba(19,24,44,.125);
+  border-radius: .25rem;
+}
+
+.card-header:first-child {
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+.no-border {
+  border-color: transparent !important;
+  border-width: 0 !important;
+}
+
+.card-footer, .card-header {
+  padding: .75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(19,24,44,.03);
+  border-bottom: 1px solid rgba(19,24,44,.125);
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+.btn {
+  font-weight: 500;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: .875rem;
+  line-height: 1.4285714286;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.refresh-btn {
+  color: #000000 !important; 
+  background-color: #e1ecff !important;
+  border-radius: 4rem;
+  padding: .25rem .5rem 0;
+  font-size: .825rem;
+  line-height: 1.5;
+}
+
+.money-count {
+  align-items: center;
+  display: flex ;
+
+  /* padding-bottom: .85rem; */
+}
+
+.money-number {
+  font-size: 1.5rem;
+  padding-left: 0.3rem;
+}
+
+.transaction-history {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.pb-3 {
+  padding-bottom: 1rem;
+}
+
+.pb3 {
+  padding: 1.25rem;
+  background-color: rgba(19,24,44,.03);
+  border-bottom: 1px solid rgba(19,24,44,.125);
+}
+
+.pb3-header {
+  display: flex;
+}
+
+.flex {
+  -webkit-box-flex: 1;
+  flex: 1 1 auto;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.refresh-button {
+  width: .85rem;
+  height: .85rem;
+}
+
+.transaction-list {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.list-row .list-item {
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: .75rem .625rem;
+}
+
+.list-item {
+  position: relative;
+  display: ms flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+}
