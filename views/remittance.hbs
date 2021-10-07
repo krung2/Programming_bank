@@ -18,6 +18,15 @@
       message.innerText = parsedData.account.accountId + ' -> ' + parsedData.reciverId + '   ' + parsedData.money + '원 송금';
       document.body.appendChild(message);
     })
+
+    sse.addEventListener('receive', ({ data }) => {
+
+      const parsedData = JSON.parse(data);
+
+      const message = document.createElement('div');
+      message.innerText = parsedData.account.accountId + ' <- ' + parsedData.senderId + '   ' + parsedData.money + '원 수금';
+      document.body.appendChild(message);
+    })
   </script>
 </body>
 
