@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, ForbiddenException, Injectable } from '@nestjs/common';
 import { sha512 } from 'js-sha512';
 import { AccountService } from 'src/apis/account/account.service';
 import Account from 'src/apis/account/entities/account.entity';
@@ -31,6 +31,14 @@ export class RemittanceService {
     }
 
     const account: Account = await this.accountService.findAccountByAccountIdWithPw(sendAccountId, sha512(sendAccountPw));
+    const changeMoney: number = Number(account.money) - money;
+
+    if (changeMoney < 0) {
+
+      throw new ForbiddenException('잔액이 모자랍니다');
+    }
+
+    account.money = changeMoney;
 
     const createSendRecord: Send = this.sendRepository.create({
       reciverId: receiveAccountId,
@@ -39,12 +47,14 @@ export class RemittanceService {
     createSendRecord.account = account;
     await this.sendRepository.save(createSendRecord);
 
-    return this.accountService.sendMoney(
+    const sendResult: Account = await this.accountService.sendMoney(
       bankCheckUtil(receiveAccountId, ActionCheckEnum.POST),
       account,
       receiveAccountId,
       money,
     );
+
+    return sendResult;
   }
 
   public async receiveMoney(receiveMoneyDto: ReceiveMoneyDto): Promise<Account> {
@@ -58,9 +68,11 @@ export class RemittanceService {
       money,
     });
     createSendRecord.account = account;
+
+    const receiveResult: Account = await this.accountService.receiveMoney(account, money);
     await this.receiveRepository.save(createSendRecord);
 
-    return this.accountService.receiveMoney(account, money);
+    return receiveResult;
   }
 
   public findSendRecordByAccountId(accountId: string): Promise<Send[]> {

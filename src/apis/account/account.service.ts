@@ -145,16 +145,6 @@ export class AccountService {
   }
 
   public async sendMoney(bankEndPoint: BankEndPoint, account: Account, receiveAccountId: string, money: number): Promise<Account> {
-
-    const changeMoney: number = Number(account.money) - money;
-
-    if (changeMoney < 0) {
-
-      throw new ForbiddenException('잔액이 모자랍니다');
-    }
-
-    account.money = changeMoney;
-
     await this.connection.transaction('SERIALIZABLE', async manager => {
 
       account = await this.accountRepository.changeMoney(manager, account)
