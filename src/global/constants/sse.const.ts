@@ -1,3 +1,4 @@
 export enum SseConst {
-  ERROR = 'error'
+  ERROR = 'error',
+  SEND = 'send',
 }
