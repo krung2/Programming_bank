@@ -9,5 +9,10 @@ export class PageController {
 
   @Get('/error')
   @Render('error')
-  root() { }
+  errorPage() { }
+
+  @Get('/remittance')
+  @Render('remittance')
+  remittancePage() { }
+
 }
