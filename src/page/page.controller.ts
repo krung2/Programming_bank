@@ -15,4 +15,7 @@ export class PageController {
   @Render('remittance')
   remittancePage() { }
 
+  @Get('/index')
+  @Render('index')
+  indexPage() { }
 }
