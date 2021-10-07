@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { SseConst } from "src/global/constants/Sse.const";
+import { SseConst } from "src/global/constants/sse.const";
 import { Connection, EntitySubscriberInterface, EventSubscriber, InsertEvent } from "typeorm";
 import { SseService } from "../sse/sse.service";
 import Send from "./entities/send.entity";

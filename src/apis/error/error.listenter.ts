@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { EventEmitterConst } from 'src/global/constants/eventEmitter.const';
-import { SseConst } from 'src/global/constants/Sse.const';
+import { SseConst } from 'src/global/constants/sse.const';
 import { ErrorThrowEvent } from 'src/global/events/error/ErrorThrow.event';
 import { SseService } from '../sse/sse.service';
 
