@@ -202,3 +202,7 @@ html {
   min-width: 0;
   word-wrap: break-word;
 }
+
+.send-pic {
+  width: 50px;
+}
