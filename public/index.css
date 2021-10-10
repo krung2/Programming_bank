@@ -25,6 +25,11 @@ html {
   -webkit-tap-highlight-color: rgba(19,24,44,0);
 }
 
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
 @media (max-width: 767.98px){
   .padding {
     padding: 1rem;
@@ -183,6 +188,8 @@ html {
 .transaction-list {
   padding-left: 0;
   padding-right: 0;
+  max-height: 170px;
+  overflow: scroll;
 }
 
 .list-row .list-item {
@@ -191,6 +198,11 @@ html {
   -ms-flex-align: center;
   align-items: center;
   padding: .75rem .625rem;
+}
+
+.list-row .list-item>* {
+  padding-left: .625rem;
+  padding-right: .625rem;
 }
 
 .list-item {
@@ -204,5 +216,14 @@ html {
 }
 
 .send-pic {
-  width: 50px;
+  width: 60px;
+}
+
+.flex {
+  -webkit-box-flex: 1;
+  flex: 1 1 auto;
+}
+
+.text-muted {
+  color: #99a0ac !important;
 }

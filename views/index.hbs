@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>나는 통계를 보여줘요 안농</title>
   <link rel="stylesheet" type="text/css" href="/index.css" />
+  <link rel="components" href="/components/card.html" />
 </head>
 
 <body>
@@ -48,25 +49,29 @@
             </div>
           </div>
 
+
           <div class="transaction-history">
             <div class="card pb-3">
               <div class="pb3">
                 <div class="pb3-header">
                   <div>
                     <h3>실시간 거래 내역</h3>
+                    <small class="text-muted">실시간으로 거래하고있는 내역을 보여줍니다</small>
                   </div>
                 </div>
               </div>
               <div class="transaction-list list-row">
                 <div class="list-item">
                   <img class="send-pic" src="/send.svg">
-                  <div>
-                    a
+                  <div class="flex">
+                    0101010101011 &#45;> 0101010101000 님이 송금하셨습니다
                   </div>
                 </div>
                 <div class="list-item">
-                  <img class="send-pic" src="/receive.svg">
-                  a
+                  <img class="send-pic" src="/send.svg">
+                  <div class="flex">
+                    0101010101011 &#45;> 0101010101000 님이 송금하셨습니다
+                  </div>
                 </div>
               </div>
             </div>
@@ -75,7 +80,7 @@
       </div>
     </div>
   </div>
-
+  </div>
 </body>
 
 </html>
