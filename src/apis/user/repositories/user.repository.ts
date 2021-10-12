@@ -16,4 +16,9 @@ export default class UserRepository extends Repository<User> {
       .andWhere('pw = :pw', { pw })
       .getOne();
   }
+
+  public countAllUser(): Promise<number> {
+    return this.createQueryBuilder()
+      .getCount();
+  }
 }

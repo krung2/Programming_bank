@@ -53,4 +53,8 @@ export class UserService {
 
     return user;
   }
+
+  public async countAllUser(): Promise<number> {
+    return this.userRepository.countAllUser();
+  }
 }
