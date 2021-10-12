@@ -41,3 +41,21 @@ errorSse.addEventListener('receive', ({ data }) => {
   remittanceBox.appendChild(receiveLog);
   remittanceBox.scrollTop = remittanceBox.scrollHeight;
 })
+
+const getBankAllMoney = () => {
+  $.ajax({
+    url: '/account/all/money',
+    method: 'GET',
+    success: (res) => {
+      console.log(res);
+      const moneyElement = document.getElementById('money');
+      moneyElement.innerText = parseInt(res.data).toLocaleString('ko-KR');
+    },
+    error: (err) => {
+      console.log(err);
+      alert('은행의 모든 돈 불러오는 중 오류 발생');
+    }
+  })
+}
+
+getBankAllMoney();
