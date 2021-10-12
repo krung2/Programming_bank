@@ -78,11 +78,13 @@ const getAllUser = () => {
     method: 'GET',
     success: (res) => {
       const rows = document.getElementById('rows');
+      const phoneNumPat4 = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?([0-9]{3,4})-?([0-9]{4})$/
+      const phoneNumPat3 = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?([0-9]{3,4})-?([0-9]{4})$/
 
       res.data.map(({ name, phone, moneyCount }) => {
         const userInfoCard = document.createElement('user-info');
         userInfoCard.setAttribute('name', name);
-        userInfoCard.setAttribute('phoneNum', phone);
+        userInfoCard.setAttribute('phoneNum', phone.replace(phone.length == 8 ? phoneNumPat4 : phoneNumPat3, '$1-$2-$3'));
         userInfoCard.setAttribute('money', moneyCount);
 
         rows.appendChild(userInfoCard);
