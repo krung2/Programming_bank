@@ -13,7 +13,7 @@ customElements.define('send-log',
           <h4>
             ${this.accountId} &#45;> ${this.receiverId}
           </h4>
-          <span>송금하셨습니다</span>
+          <span>${this.money}원 송금하셨습니다</span>
         </div>
       </div>`
     }

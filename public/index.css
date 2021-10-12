@@ -196,6 +196,7 @@ h3, h4 {
 .transaction-list {
   padding-left: 0;
   padding-right: 0;
+  height: 170px;
   max-height: 170px;
   overflow: scroll;
 }
