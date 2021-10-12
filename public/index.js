@@ -72,5 +72,29 @@ const getAllUserCount = () => {
   })
 }
 
-// getBankAllMoney();
-// getAllUserCount();
+const getAllUser = () => {
+  $.ajax({
+    url: '/user/all',
+    method: 'GET',
+    success: (res) => {
+      const rows = document.getElementById('rows');
+
+      res.data.map(({ name, phone, moneyCount }) => {
+        const userInfoCard = document.createElement('user-info');
+        userInfoCard.setAttribute('name', name);
+        userInfoCard.setAttribute('phoneNum', phone);
+        userInfoCard.setAttribute('money', moneyCount);
+
+        rows.appendChild(userInfoCard);
+      })
+    },
+    error: (err) => {
+      console.log(err);
+      alert('은행의 모든 돈 불러오는 중 오류 발생');
+    }
+  })
+}
+
+getBankAllMoney();
+getAllUserCount();
+getAllUser();
