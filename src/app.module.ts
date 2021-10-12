@@ -1,7 +1,5 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { validate } from './config/env.validation';
 import { AuthModule } from './apis/auth/auth.module';
 import { TokenModule } from './apis/token/token.module';
@@ -33,8 +31,7 @@ import { ErrorFilter } from './global/filters/error.filter';
     ErrorModule,
     SseModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, {
+  providers: [{
     provide: APP_FILTER,
     useClass: ErrorFilter,
   }],
