@@ -59,7 +59,7 @@ h3, h4 {
   }
 }
 
-.boxs, .staticBox, .transaction-history, .col-md-7 {
+.boxs, .staticBox, .transaction-history, .col-md-7, .col-12 {
   position: relative;
   width: 100%;
   padding: 0 15px 0 15px;
@@ -262,4 +262,21 @@ h3, h4 {
   padding-right: 0;
   max-height: 332px;
   overflow: auto;
+}
+
+.user-list {
+  padding-left: 0;
+  padding-right: 0;
+  height: 170px;
+  overflow: scroll;
+}
+
+.align-item-center {
+  text-align: center;
+  align-items: center;
+}
+
+.list-item-padding {
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
 }
