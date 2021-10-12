@@ -24,14 +24,13 @@ export class ErrorFilter<T> implements ExceptionFilter {
 
     const req: Request = host.switchToHttp().getRequest();
     const res: Response = host.switchToHttp().getResponse();
-    const requestURL: string = `${req.ip}${req.url}`
 
     if (exception instanceof HttpException) {
 
       Logger.warn(exception);
       this.eventEmitter.emit(
         EventEmitterConst.ERROR_CREATE,
-        new ErrorThrowEvent(requestURL, exception.getStatus(), exception.message),
+        new ErrorThrowEvent(req.ip, req.url, exception.getStatus(), exception.message),
       );
 
       res.status(exception.getStatus()).json({
@@ -43,7 +42,7 @@ export class ErrorFilter<T> implements ExceptionFilter {
       Logger.error(exception);
       this.eventEmitter.emit(
         EventEmitterConst.ERROR_CREATE,
-        new ErrorThrowEvent(requestURL, HttpStatus.INTERNAL_SERVER_ERROR, '서버 오류'),
+        new ErrorThrowEvent(req.ip, req.url, HttpStatus.INTERNAL_SERVER_ERROR, '서버 오류'),
       );
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         status: HttpStatus.INTERNAL_SERVER_ERROR,
