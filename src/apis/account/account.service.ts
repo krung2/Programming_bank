@@ -8,7 +8,7 @@ import { customAxiosUtil } from 'src/global/utils/CustomAxiosUtil';
 import { randomNum0To9 } from 'src/global/utils/RandomNum.util';
 import { validationData, validationPattern } from 'src/global/utils/validationData.util';
 import User from 'src/apis/user/entities/user.entity';
-import { Connection } from 'typeorm';
+import { Connection, Long } from 'typeorm';
 import AddAccountDto from './dto/addAccount.dto';
 import Account from './entities/account.entity';
 import AccountRepository from './repositories/account.repository';
@@ -17,6 +17,7 @@ import MyAccount from './entities/myAccount.entity';
 import { bankCheckUtil } from 'src/global/utils/BankCheckUtil';
 import { ActionCheckEnum } from 'src/global/enums/actionCheck.enum';
 import BaseResponse from 'src/global/response/base.response';
+import { IAccounMoney } from 'src/global/interfaces/IAccountMoney';
 
 @Injectable()
 export class AccountService {
@@ -79,6 +80,16 @@ export class AccountService {
 
       throw new ConflictException('중복된 계좌번호입니다');
     }
+  }
+
+  public async getAllBankMoney(): Promise<number> {
+
+    const bankMoneyStr: IAccounMoney[] = await this.accountRepository.getAllBankMoney();
+    let bankMoney: number = 0;
+
+    bankMoneyStr.map(({ money }) => bankMoney += +money);
+
+    return bankMoney;
   }
 
   public async findAccountByAccountId(accountId: string): Promise<Account> {

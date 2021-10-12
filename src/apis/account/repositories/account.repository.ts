@@ -1,3 +1,4 @@
+import { IAccounMoney } from "src/global/interfaces/IAccountMoney";
 import { EntityManager, EntityRepository, Repository, TransactionManager } from "typeorm";
 import Account from "../entities/account.entity";
 
@@ -27,6 +28,12 @@ export default class AccountRepository extends Repository<Account> {
     return this.createQueryBuilder()
       .where('user_phone = :userPhone', { userPhone })
       .getMany()
+  }
+
+  public getAllBankMoney(): Promise<IAccounMoney[]> {
+    return this.createQueryBuilder()
+      .select('money')
+      .getRawMany();
   }
 
   public changeMoney(@TransactionManager() manager: EntityManager, account: Account): Promise<Account> {

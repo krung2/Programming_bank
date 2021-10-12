@@ -97,4 +97,12 @@ export class AccountController {
 
     // TODO: 다른 계좌와 연동하여 불러오기
   }
+
+  @Get('/all/money')
+  async getAllBankMoney(): Promise<BaseResponse<number>> {
+
+    const money: number = await this.accountService.getAllBankMoney();
+
+    return new BaseResponse<number>(200, '은행의 모든 돈 조회 완료', money);
+  }
 }

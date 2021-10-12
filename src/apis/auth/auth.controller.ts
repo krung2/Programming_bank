@@ -92,5 +92,4 @@ export class AuthController {
 
     return new BaseResponse<LoginResponseData>(200, '간편 로그인 성공', authenticationLogin);
   }
-
 }
