@@ -21,4 +21,10 @@ export default class UserRepository extends Repository<User> {
     return this.createQueryBuilder()
       .getCount();
   }
+
+  public getAllUser(): Promise<User[]> {
+    return this.createQueryBuilder('user')
+      .leftJoinAndSelect('user.account', 'account')
+      .getMany();
+  }
 }

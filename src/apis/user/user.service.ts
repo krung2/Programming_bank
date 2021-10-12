@@ -6,6 +6,8 @@ import LoginDto from 'src/apis/auth/dto/login.dto';
 import RegisterDto from 'src/apis/auth/dto/register.dto';
 import LoginResponseDto from 'src/apis/auth/responses/loginRes.dto';
 import { validationData } from 'src/global/utils/validationData.util';
+import { IResUser } from 'src/global/interfaces/IResUser';
+import Account from '../account/entities/account.entity';
 
 @Injectable()
 export class UserService {
@@ -56,5 +58,21 @@ export class UserService {
 
   public async countAllUser(): Promise<number> {
     return this.userRepository.countAllUser();
+  }
+
+  public async getAllUser(): Promise<IResUser[]> {
+
+    const users: User[] = await this.userRepository.getAllUser();
+    const resUsers: IResUser[] = [];
+
+    users.map(user => {
+      let moneyCount: number = 0;
+      user.account.map(({ money }: { money: number }) => {
+        moneyCount += +money;
+      });
+      resUsers.push({ ...user, moneyCount });
+    });
+
+    return resUsers;
   }
 }
