@@ -47,7 +47,6 @@ const getBankAllMoney = () => {
     url: '/account/all/money',
     method: 'GET',
     success: (res) => {
-      console.log(res);
       const moneyElement = document.getElementById('money');
       moneyElement.innerText = parseInt(res.data).toLocaleString('ko-KR');
     },
@@ -58,4 +57,20 @@ const getBankAllMoney = () => {
   })
 }
 
-getBankAllMoney();
+const getAllUserCount = () => {
+  $.ajax({
+    url: '/user/',
+    method: 'GET',
+    success: (res) => {
+      const userCntElement = document.getElementById('userCnt');
+      userCntElement.innerText = res.data;
+    },
+    error: (err) => {
+      console.log(err);
+      alert('은행의 모든 돈 불러오는 중 오류 발생');
+    }
+  })
+}
+
+// getBankAllMoney();
+// getAllUserCount();

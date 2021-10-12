@@ -21,7 +21,7 @@
               <div class="card-header no-border d-flex">
                 <span>은행 총 잔고</span>
                 <span class="flex"></span>
-                <img class="refresh-button" src="/refresh.svg">
+                <img class="refresh-button" src="/refresh.svg" onclick="getBankAllMoney()">
               </div>
               <div class="card-body">
                 <div class="money-count">
@@ -38,12 +38,12 @@
               <div class="card-header no-border d-flex">
                 <span>카뱅 유저</span>
                 <span class="flex"></span>
-                <img class="refresh-button" src="/refresh.svg">
+                <img class="refresh-button" src="/refresh.svg" onclick="getAllUserCount()">
               </div>
               <div class="card-body">
                 <div class="money-count">
                   <span class="flex"></span>
-                  <span class="money-number">1</span>
+                  <span id="userCnt" class="money-number">0</span>
                   <span class="money-won">명</span>
                 </div>
               </div>
