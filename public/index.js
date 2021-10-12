@@ -11,4 +11,5 @@ errorSse.addEventListener('error', ({ data }) => {
   error.setAttribute('content', parsedData.message);
 
   errorBox.appendChild(error);
+  errorBox.scrollTop = errorBox.scrollHeight;
 })
