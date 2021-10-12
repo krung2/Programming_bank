@@ -11,8 +11,8 @@ customElements.define('user-info',
           <div class="card">
             <div class="card-header no-border d-flex">
               <span class="flex"></span>
-              <div>
-                <h2 class="align-item-center">${this.name}</h2>
+              <div class="align-item-center">
+                <h2>${this.name}</h2>
                 <small class="text-muted">${this.phoneNum}</small>
               </div>
               <span class="flex"></span>
