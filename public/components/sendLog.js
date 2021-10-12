@@ -1,4 +1,4 @@
-customElements.define('receive-log',
+customElements.define('send-log',
   class extends HTMLElement {
     constructor() {
       super();
@@ -8,12 +8,12 @@ customElements.define('receive-log',
 
       this.innerHTML = `
       <div class="list-item">
-        <img class="send-pic" src="/receive.svg">
+        <img class="send-pic" src="/send.svg">
         <div class="flex">
           <h4>
-            ${this.senderId} <&#45; ${this.accountId} 
+            ${this.accountId} &#45;> ${this.receiverId}
           </h4>
-          <span>${this.money}원 입금받으셨습니다</span>
+          <span>송금하셨습니다</span>
         </div>
       </div>`
     }
@@ -22,8 +22,8 @@ customElements.define('receive-log',
       return this.getAttribute('accountId');
     }
 
-    get senderId() {
-      return this.getAttribute('senderId')
+    get receiverId() {
+      return this.getAttribute('receiverId')
     }
 
     get money() {

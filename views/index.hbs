@@ -60,19 +60,13 @@
                 </div>
               </div>
               <div class="transaction-list list-row">
-                <div class="list-item">
-                  <img class="send-pic" src="/send.svg">
-                  <div class="flex">
-                    <h4>
-                      0101010101011 &#45;> 0101010101000
-                    </h4>
-                    <span>송금하셨습니다</span>
-                  </div>
-                </div>
 
-                <receive-log accountId="0101010101000" receiverId="0101010101011" money="1000"></receive-log>
-                <receive-log accountId="0101010101000" receiverId="0101010101011" money="1000"></receive-log>
-                <receive-log accountId="0101010101000" receiverId="0101010101011" money="1000"></receive-log>
+                <send-log accountId="0101010101011" receiverId="0101010101011" money="2000"></send-log>
+                <receive-log accountId="0101010101000" senderId="0101010101000" money="1000"></receive-log>
+                <send-log accountId="0101010101011" receiverId="0101010101011" money="2000"></send-log>
+                <receive-log accountId="0101010101000" senderId="0101010101000" money="1000"></receive-log>
+                <send-log accountId="0101010101011" receiverId="0101010101011" money="2000"></send-log>
+                <receive-log accountId="0101010101000" senderId="0101010101000" money="1000"></receive-log>
 
               </div>
             </div>
@@ -104,6 +98,7 @@
   <script type="text/javascript" src="/index.js"></script>
   <script type="text/javascript" src="/components/errorLogs.js"></script>
   <script type="text/javascript" src="/components/receiveLog.js"></script>
+  <script type="text/javascript" src="/components/sendLog.js"></script>
 </body>
 
 </html>
