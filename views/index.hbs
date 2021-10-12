@@ -63,53 +63,47 @@
                 <div class="list-item">
                   <img class="send-pic" src="/send.svg">
                   <div class="flex">
-                    0101010101011 &#45;> 0101010101000 님이 송금하셨습니다
+                    <h4>
+                      0101010101011 &#45;> 0101010101000
+                    </h4>
+                    <span>송금하셨습니다</span>
                   </div>
                 </div>
-                <div class="list-item">
-                  <img class="send-pic" src="/receive.svg">
-                  <div class="flex">
-                    0101010101011 <&#45; 0101010101000 님이 송금 받으셨습니다</div>
-                  </div>
-                  <div class="list-item">
-                    <img class="send-pic" src="/receive.svg">
-                    <div class="flex">
-                      0101010101011 <&#45; 0101010101000 님이 송금 받으셨습니다</div>
-                    </div>
-                    <div class="list-item">
-                      <img class="send-pic" src="/receive.svg">
-                      <div class="flex">
-                        0101010101011 <&#45; 0101010101000 님이 송금 받으셨습니다</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div class="col-md-7">
-              <div class="card">
-                <div class="p-3-4">
-                  <div class="d-flex mb-3">
-                    <div>
-                      <h3>서버 에러 로그</h3>
-                      <small class="text-muted">
-                        서버에서 생기는 로그를 밝혀줍니다
-                      </small>
-                    </div>
-                  </div>
-                  <div class="p-2">
-                    <div id="error-box" class="error-box list-row">
-                    </div>
-                  </div>
-                </div>
+                <receive-log accountId="0101010101000" receiverId="0101010101011" money="1000"></receive-log>
+                <receive-log accountId="0101010101000" receiverId="0101010101011" money="1000"></receive-log>
+                <receive-log accountId="0101010101000" receiverId="0101010101011" money="1000"></receive-log>
+
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <script type="text/javascript" src="/index.js"></script>
-        <script type="text/javascript" src="/components/errorLogs.js"></script>
+      <div class="col-md-7">
+        <div class="card">
+          <div class="p-3-4">
+            <div class="d-flex mb-3">
+              <div>
+                <h3>서버 에러 로그</h3>
+                <small class="text-muted">
+                  서버에서 생기는 로그를 밝혀줍니다
+                </small>
+              </div>
+            </div>
+            <div class="p-2">
+              <div id="error-box" class="error-box list-row">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="/index.js"></script>
+  <script type="text/javascript" src="/components/errorLogs.js"></script>
+  <script type="text/javascript" src="/components/receiveLog.js"></script>
 </body>
 
 </html>

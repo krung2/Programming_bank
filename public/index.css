@@ -25,7 +25,7 @@ html {
   -webkit-tap-highlight-color: rgba(19,24,44,0);
 }
 
-h3 {
+h3, h4 {
   margin: 0;
   padding: 0;
 }
@@ -224,7 +224,8 @@ h3 {
 }
 
 .send-pic {
-  width: 60px;
+  /* width: 60px; */
+  height: 25px; 
 }
 
 .flex {
