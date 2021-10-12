@@ -40,7 +40,7 @@ customElements.define('user-info',
     }
 
     get money() {
-      return this.getAttribute('money')
+      return parseInt(this.getAttribute('money')).toLocaleString('ko-KR');
     }
   }
 );

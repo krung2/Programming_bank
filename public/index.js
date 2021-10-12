@@ -41,3 +41,4 @@ errorSse.addEventListener('receive', ({ data }) => {
   remittanceBox.appendChild(receiveLog);
   remittanceBox.scrollTop = remittanceBox.scrollHeight;
 })
+
