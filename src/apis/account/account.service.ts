@@ -123,12 +123,14 @@ export class AccountService {
 
   public async findMyAccounts(user: User): Promise<Account[]> {
 
-    const myAccount: MyAccount[] = await this.myAccountRepository.getMyAccountByUserId(user.id);
+    const myAccount: MyAccount[] = await this.myAccountRepository.getMyAccountByUserId(user.phone);
     const myAccountList: Account[] = [];
 
-    myAccount.map(async ({ accountId }: MyAccount) => {
-      myAccountList.push(await this.findAccountById(accountId));
-    })
+    await Promise.all(
+      myAccount.map(async ({ accountId }: MyAccount) => {
+        myAccountList.push(await this.findAccountById(accountId));
+      })
+    )
 
     return myAccountList;
   }
