@@ -135,7 +135,7 @@ export class AccountService {
 
   public async findAccountById(accountId: string): Promise<Account> {
     try {
-      const { data }: { data: BaseResponse<Account> } = await customAxiosUtil.get(bankCheckUtil(accountId, ActionCheckEnum.GET))
+      const { data }: { data: BaseResponse<Account> } = await customAxiosUtil.get(bankCheckUtil(accountId, ActionCheckEnum.GET) + accountId);
       return data.data;
     } catch (e) {
       console.log(e);
