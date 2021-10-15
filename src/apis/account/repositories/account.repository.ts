@@ -20,7 +20,7 @@ export default class AccountRepository extends Repository<Account> {
   public findAccountByAccountIdWithPw(accountId: string, accountPw): Promise<Account | undefined> {
     return this.createQueryBuilder()
       .where('account_id = :accountId', { accountId })
-      .where('password = :accountPw', { accountPw })
+      .andWhere('password = :accountPw', { accountPw })
       .getOne();
   }
 
