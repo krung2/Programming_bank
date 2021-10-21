@@ -50,7 +50,7 @@ export class AccountService {
 
       const saveAccount: Account = await this.accountRepository.save({
         accountId,
-        money: 0,
+        money: 50000,
         password: sha512(addAccountDto.password),
         user,
       });
