@@ -8,6 +8,9 @@ export default class MyAccount {
   idx!: number;
 
   @Column()
+  accountName!: string;
+
+  @Column()
   accountId!: string;
 
   @JoinColumn({ name: 'user_id' })

@@ -18,7 +18,7 @@ import { bankCheckUtil } from 'src/global/utils/BankCheckUtil';
 import { ActionCheckEnum } from 'src/global/enums/actionCheck.enum';
 import BaseResponse from 'src/global/response/base.response';
 import { IAccounMoney } from 'src/global/interfaces/IAccountMoney';
-import { arrayContains } from 'class-validator';
+import { AddMyAccountDto } from './dto/addMyaccount.dto';
 
 @Injectable()
 export class AccountService {
@@ -189,5 +189,17 @@ export class AccountService {
     });
 
     return account
+  }
+
+  public async addMyAccount(user: User, addMyAccountDto: AddMyAccountDto): Promise<MyAccount[]> {
+
+    for (const account of addMyAccountDto.accounts) {
+
+      const createMyAccount: MyAccount = this.myAccountRepository.create(account);
+      createMyAccount.user;
+      await this.myAccountRepository.save(createMyAccount);
+    }
+
+    return this.myAccountRepository.getMyAccountByUserId(user.phone);
   }
 }

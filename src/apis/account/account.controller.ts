@@ -10,6 +10,8 @@ import Account from './entities/account.entity';
 import { AddAccountResponse } from './responses/addAccountRes.dto';
 import { FindAccountManyResponse } from './responses/findAccountManyRes.dto';
 import { FindAccountResponse } from './responses/findAccountRes.dto';
+import { AddMyAccountDto } from './dto/addMyaccount.dto';
+import MyAccount from './entities/myAccount.entity';
 
 @ApiTags('account')
 @Controller('account')
@@ -108,5 +110,22 @@ export class AccountController {
     const money: number = await this.accountService.getAllBankMoney();
 
     return new BaseResponse<number>(200, '은행의 모든 돈 조회 완료', money);
+  }
+
+  @Post('/my')
+  @UseGuards(AuthGaurd)
+  @ApiBearerAuth()
+  @ApiOkResponse({
+    description: '나의 계좌 추가하기 성공',
+    type: AddAccountResponse
+  })
+  async AddMyAccount(
+    @Token() user: User,
+    @Body() addMyAccount: AddMyAccountDto
+  ): Promise<BaseResponse<MyAccount[]>> {
+
+    const myAccounts: MyAccount[] = await this.accountService.addMyAccount(user, addMyAccount);
+
+    return new BaseResponse<MyAccount[]>(200, '은행의 모든 돈 조회 완료', myAccounts);
   }
 }
