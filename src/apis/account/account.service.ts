@@ -59,6 +59,7 @@ export class AccountService {
       await this.myAccountRepository.save({
         user,
         accountId,
+        accountName: addAccountDto.accountName,
       })
 
       return saveAccount;
