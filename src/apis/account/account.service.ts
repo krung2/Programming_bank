@@ -19,6 +19,7 @@ import { ActionCheckEnum } from 'src/global/enums/actionCheck.enum';
 import BaseResponse from 'src/global/response/base.response';
 import { IAccounMoney } from 'src/global/interfaces/IAccountMoney';
 import { AddMyAccountDto } from './dto/addMyaccount.dto';
+import { FindMyAllAccountDto } from './responses/findMyAllAccountRes.dto';
 
 @Injectable()
 export class AccountService {
@@ -94,15 +95,17 @@ export class AccountService {
     return bankMoney;
   }
 
-  public async getAllBankAccount(phone: string): Promise<any[]> {
+  public async getAllBankAccount(phone: string): Promise<FindMyAllAccountDto[]> {
 
-    const accountArr: any[] = [];
+    const accountArr: FindMyAllAccountDto[] = [];
 
     for (const value of Object.values(BankAccountEndPoint)) {
       try {
         const { data }: { data: BaseResponse<any> } = await customAxiosUtil.get(value + phone);
+
         await data.data.map((d: any) => {
-          accountArr.push(d);
+          if (value === BankAccountEndPoint.JB) accountArr.push(new FindMyAllAccountDto(d.accountId, d.user.phone, d.user.name));
+          if (value === BankAccountEndPoint.HY) accountArr.push(new FindMyAllAccountDto(d.account, d.user.phone, d.user.name));
         });
       } catch (err) {
         Logger.log(value + '의 계좌가 없습니다')

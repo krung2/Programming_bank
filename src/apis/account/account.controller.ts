@@ -12,6 +12,7 @@ import { FindAccountManyResponse } from './responses/findAccountManyRes.dto';
 import { FindAccountResponse } from './responses/findAccountRes.dto';
 import { AddMyAccountDto } from './dto/addMyaccount.dto';
 import MyAccount from './entities/myAccount.entity';
+import { FindMyAllAccountDto, FindMyAllAccountResDto } from './responses/findMyAllAccountRes.dto';
 
 @ApiTags('account')
 @Controller('account')
@@ -93,15 +94,15 @@ export class AccountController {
   @ApiBearerAuth()
   @ApiOkResponse({
     description: '모든 은행 계좌 불러오기 성공',
-    type: FindAccountManyResponse
+    type: FindMyAllAccountResDto
   })
   async findMyAllAccount(
     @Token() user: User,
-  ): Promise<BaseResponse<any[]>> {
+  ): Promise<BaseResponse<FindMyAllAccountDto[]>> {
 
-    const accounts: any[] = await this.accountService.getAllBankAccount(user.phone);
+    const accounts: FindMyAllAccountDto[] = await this.accountService.getAllBankAccount(user.phone);
 
-    return new BaseResponse<any[]>(200, '모든 은행 계좌 불러오기 성공', accounts);
+    return new BaseResponse<FindMyAllAccountDto[]>(200, '모든 은행 계좌 불러오기 성공', accounts);
   }
 
   @Get('/all/money')

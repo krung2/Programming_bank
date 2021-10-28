@@ -6,7 +6,8 @@ import Account from "../entities/account.entity";
 export default class AccountRepository extends Repository<Account> {
 
   public findAccountByPhone(phone: string): Promise<Account[]> {
-    return this.createQueryBuilder()
+    return this.createQueryBuilder('account')
+      .leftJoinAndSelect('account.user', 'user')
       .where('user_phone = :phone', { phone })
       .getMany();
   }
