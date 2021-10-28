@@ -16,10 +16,6 @@ export const bankCheckUtil = (accountId: string, type: ActionCheckEnum): BankEnd
         return BankEndPoint.JB;
       case AccountConst.HY:
         return BankEndPoint.HY;
-      case AccountConst.JM:
-        return BankEndPoint.JM;
-      case AccountConst.MG:
-        return BankEndPoint.MG;
       default:
         throw new ForbiddenException('잘못된 계좌번호 입니다');
     }
@@ -30,10 +26,6 @@ export const bankCheckUtil = (accountId: string, type: ActionCheckEnum): BankEnd
       return BankEndPoint.GJB;
     case AccountConst.HY:
       return BankEndPoint.GHY;
-    case AccountConst.JM:
-      return BankEndPoint.GJM;
-    case AccountConst.MG:
-      return BankEndPoint.GMG;
     default:
       throw new ForbiddenException('잘못된 계좌번호 입니다');
   }

@@ -87,15 +87,19 @@ export class AccountController {
   }
 
   @Get('/my/all')
+  @UseGuards(AuthGaurd)
+  @ApiBearerAuth()
   @ApiOkResponse({
     description: '모든 은행 계좌 불러오기 성공',
     type: FindAccountManyResponse
   })
   async findMyAllAccount(
     @Token() user: User,
-  ): Promise<void> {
+  ): Promise<BaseResponse<any[]>> {
 
-    // TODO: 다른 계좌와 연동하여 불러오기
+    const accounts: any[] = await this.accountService.getAllBankAccount(user.phone);
+
+    return new BaseResponse<any[]>(200, '모든 은행 계좌 불러오기 성공', accounts);
   }
 
   @Get('/all/money')

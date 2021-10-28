@@ -1,14 +1,14 @@
-import { ConflictException, ForbiddenException, HttpException, Injectable } from '@nestjs/common';
+import { ConflictException, ForbiddenException, HttpException, Injectable, Logger } from '@nestjs/common';
 import { sha512 } from 'js-sha512';
 import { AccountConst } from 'src/global/constants/account.const';
-import { BankEndPoint } from 'src/global/constants/bankEndPoint.const';
+import { BankAccountEndPoint, BankEndPoint } from 'src/global/constants/bankEndPoint.const';
 import { accountPwPattern } from 'src/global/patterns/accountPattern';
 import { isDiffrentUtil } from 'src/global/utils/Comparison.util';
 import { customAxiosUtil } from 'src/global/utils/CustomAxiosUtil';
 import { randomNum0To9 } from 'src/global/utils/RandomNum.util';
 import { validationData, validationPattern } from 'src/global/utils/validationData.util';
 import User from 'src/apis/user/entities/user.entity';
-import { Connection, Long } from 'typeorm';
+import { Connection } from 'typeorm';
 import AddAccountDto from './dto/addAccount.dto';
 import Account from './entities/account.entity';
 import AccountRepository from './repositories/account.repository';
@@ -18,6 +18,7 @@ import { bankCheckUtil } from 'src/global/utils/BankCheckUtil';
 import { ActionCheckEnum } from 'src/global/enums/actionCheck.enum';
 import BaseResponse from 'src/global/response/base.response';
 import { IAccounMoney } from 'src/global/interfaces/IAccountMoney';
+import { arrayContains } from 'class-validator';
 
 @Injectable()
 export class AccountService {
@@ -90,6 +91,24 @@ export class AccountService {
     bankMoneyStr.map(({ money }) => bankMoney += +money);
 
     return bankMoney;
+  }
+
+  public async getAllBankAccount(phone: string): Promise<any[]> {
+
+    const accountArr: any[] = [];
+
+    for (const value of Object.values(BankAccountEndPoint)) {
+      try {
+        const { data }: { data: BaseResponse<any> } = await customAxiosUtil.get(value + phone);
+        await data.data.map((d: any) => {
+          accountArr.push(d);
+        });
+      } catch (err) {
+        Logger.log(value + '의 계좌가 없습니다')
+      }
+    }
+
+    return accountArr;
   }
 
   public async findAccountByAccountId(accountId: string): Promise<Account> {

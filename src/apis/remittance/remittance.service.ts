@@ -31,7 +31,9 @@ export class RemittanceService {
     }
 
     const account: Account = await this.accountService.findAccountByAccountIdWithPw(sendAccountId, sha512(sendAccountPw));
-    const changeMoney: number = Number(account.money) - money;
+
+    const transeMoney = money < 10000 ? money + 500 : money;
+    const changeMoney: number = Number(account.money) - transeMoney;
 
     if (changeMoney < 0) {
 
