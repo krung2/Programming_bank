@@ -13,8 +13,9 @@ export default class AccountRepository extends Repository<Account> {
   }
 
   public findAccountByAccountId(accountId: string): Promise<Account | undefined> {
-    return this.createQueryBuilder()
-      .where('account_id = :accountId', { accountId })
+    return this.createQueryBuilder('account')
+      .leftJoinAndSelect("account.user", "user")
+      .where('account.account_id = :accountId', { accountId })
       .getOne();
   }
 
