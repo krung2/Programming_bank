@@ -200,7 +200,7 @@ export class AccountService {
     for (const account of addMyAccountDto.accounts) {
 
       const createMyAccount: MyAccount = this.myAccountRepository.create(account);
-      createMyAccount.user;
+      createMyAccount.user = user;
       await this.myAccountRepository.save(createMyAccount);
     }
 

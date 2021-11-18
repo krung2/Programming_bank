@@ -6,6 +6,7 @@ import { ConfigService } from '@nestjs/config';
 import { setUpSwagger } from './config/swagger/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
+import { MessagingInterceptor } from './global/interceptors/messaging.interceptor';
 
 async function bootstrap() {
   const app: NestExpressApplication = await NestFactory.create<NestExpressApplication>(AppModule, { cors: true });

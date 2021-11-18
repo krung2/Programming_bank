@@ -1,6 +1,6 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from "@nestjs/common";
 import { EventEmitter2 } from "@nestjs/event-emitter";
-import { Observable } from "rxjs";
+import { map, Observable, tap } from "rxjs";
 import { EventEmitterConst } from "../constants/eventEmitter.const";
 import { ErrorThrowEvent } from "../events/error/ErrorThrow.event";
 import { Request, Response } from "express";
@@ -20,7 +20,7 @@ export class MessagingInterceptor implements NestInterceptor {
     return next
       .handle()
       .pipe(
-
-      )
+        map(data => console.log(data))
+      );
   }
 }

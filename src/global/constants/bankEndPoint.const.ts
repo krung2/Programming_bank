@@ -7,5 +7,5 @@ export enum BankEndPoint {
 
 export enum BankAccountEndPoint {
   JB = 'http://localhost:8080/account/find/phone/',
-  HY = 'http://34.64.79.162:8080/account/',
+  HY = 'http://34.64.79.162:8080/account/get/',
 }

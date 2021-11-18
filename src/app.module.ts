@@ -10,8 +10,9 @@ import { DatabaseModule } from './config/database/database.module';
 import { PageModule } from './page/page.module';
 import { ErrorModule } from './apis/error/error.module';
 import { SseModule } from './apis/sse/sse.module';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { ErrorFilter } from './global/filters/error.filter';
+import { MessagingInterceptor } from './global/interceptors/messaging.interceptor';
 
 @Module({
   imports: [
@@ -34,6 +35,9 @@ import { ErrorFilter } from './global/filters/error.filter';
   providers: [{
     provide: APP_FILTER,
     useClass: ErrorFilter,
+  }, {
+    provide: APP_INTERCEPTOR,
+    useClass: MessagingInterceptor,
   }],
 })
 
