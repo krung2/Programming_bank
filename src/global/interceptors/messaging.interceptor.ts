@@ -17,7 +17,10 @@ export class MessagingInterceptor implements NestInterceptor {
     const req: Request = context.switchToHttp().getRequest();
 
     return next.handle().pipe(
-      tap(() => console.log(new ErrorThrowEvent(req.ip, req.url, HttpStatus.OK, '요청 성공')))
+      tap(() => this.eventEmitter.emit(
+        EventEmitterConst.ERROR_CREATE,
+        new ErrorThrowEvent(req.ip, req.url, HttpStatus.OK, '요청 성공'),
+      ))
     );
   }
 }
