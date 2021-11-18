@@ -1,6 +1,6 @@
 import { CallHandler, ExecutionContext, HttpStatus, Injectable, NestInterceptor } from "@nestjs/common";
 import { EventEmitter2 } from "@nestjs/event-emitter";
-import { map, Observable, tap } from "rxjs";
+import { Observable, tap } from "rxjs";
 import { EventEmitterConst } from "../constants/eventEmitter.const";
 import { ErrorThrowEvent } from "../events/error/ErrorThrow.event";
 import { Request, Response } from "express";
