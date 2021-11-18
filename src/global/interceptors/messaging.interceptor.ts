@@ -1,4 +1,4 @@
-import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from "@nestjs/common";
+import { CallHandler, ExecutionContext, HttpStatus, Injectable, NestInterceptor } from "@nestjs/common";
 import { EventEmitter2 } from "@nestjs/event-emitter";
 import { map, Observable, tap } from "rxjs";
 import { EventEmitterConst } from "../constants/eventEmitter.const";
@@ -15,12 +15,9 @@ export class MessagingInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
 
     const req: Request = context.switchToHttp().getRequest();
-    const res: Response = context.switchToHttp().getResponse();
 
-    return next
-      .handle()
-      .pipe(
-        map(data => console.log(data))
-      );
+    return next.handle().pipe(
+      tap(() => console.log(new ErrorThrowEvent(req.ip, req.url, HttpStatus.OK, '요청 성공')))
+    );
   }
 }

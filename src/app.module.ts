@@ -37,7 +37,7 @@ import { MessagingInterceptor } from './global/interceptors/messaging.intercepto
     useClass: ErrorFilter,
   }, {
     provide: APP_INTERCEPTOR,
-    useClass: MessagingInterceptor,
+    useClass: MessagingInterceptor
   }],
 })
 
