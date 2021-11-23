@@ -162,8 +162,8 @@ export class AccountService {
     try {
       const { data }: { data: BaseResponse<any> } = await customAxiosUtil.get(bankCheckUtil(accountId, ActionCheckEnum.GET) + accountId);
       const endpoint = bankCheckUtil(accountId, ActionCheckEnum.GET);
-      if (endpoint === BankEndPoint.GJB) return new FindMyAllAccountDto(data.data.accountId, data.data.user.phone, data.data.user.name);
-      if (endpoint === BankEndPoint.GHY) return new FindMyAllAccountDto(data.data.account, data.data.user.phone, data.data.user.name);
+      if (endpoint === BankEndPoint.GJB) return new FindMyAllAccountDto(data.data.accountId, data.data.user.phone, data.data.user.name, data.data.money);
+      if (endpoint === BankEndPoint.GHY) return new FindMyAllAccountDto(data.data.account, data.data.user.phone, data.data.user.name, data.data.money);
     } catch (e) {
       console.log(e);
     }
