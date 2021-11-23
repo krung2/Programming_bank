@@ -144,10 +144,10 @@ export class AccountService {
     return this.accountRepository.findAccountByPhone(userPhone);
   }
 
-  public async findMyAccounts(user: User): Promise<Account[]> {
+  public async findMyAccounts(user: User): Promise<FindMyAllAccountDto[]> {
 
     const myAccount: MyAccount[] = await this.myAccountRepository.getMyAccountByUserId(user.phone);
-    const myAccountList: Account[] = [];
+    const myAccountList: FindMyAllAccountDto[] = [];
 
     await Promise.all(
       myAccount.map(async ({ accountId }: MyAccount) => {
@@ -158,10 +158,12 @@ export class AccountService {
     return myAccountList;
   }
 
-  public async findAccountById(accountId: string): Promise<Account> {
+  public async findAccountById(accountId: string): Promise<FindMyAllAccountDto> {
     try {
-      const { data }: { data: BaseResponse<Account> } = await customAxiosUtil.get(bankCheckUtil(accountId, ActionCheckEnum.GET) + accountId);
-      return data.data;
+      const { data }: { data: BaseResponse<any> } = await customAxiosUtil.get(bankCheckUtil(accountId, ActionCheckEnum.GET) + accountId);
+      const endpoint = bankCheckUtil(accountId, ActionCheckEnum.GET);
+      if (endpoint === BankEndPoint.GJB) return new FindMyAllAccountDto(data.data.accountId, data.data.user.phone, data.data.user.name);
+      if (endpoint === BankEndPoint.GHY) return new FindMyAllAccountDto(data.data.account, data.data.user.phone, data.data.user.name);
     } catch (e) {
       console.log(e);
     }

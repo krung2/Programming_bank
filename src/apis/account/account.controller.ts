@@ -51,11 +51,11 @@ export class AccountController {
   })
   async findAccountByToken(
     @Token() user: User,
-  ): Promise<BaseResponse<Account[]>> {
+  ): Promise<BaseResponse<FindMyAllAccountDto[]>> {
 
-    const accounts: Account[] = await this.accountService.findMyAccounts(user);
+    const accounts: FindMyAllAccountDto[] = await this.accountService.findMyAccounts(user);
 
-    return new BaseResponse<Account[]>(200, '나의 계좌 조회 성공', accounts);
+    return new BaseResponse<FindMyAllAccountDto[]>(200, '나의 계좌 조회 성공', accounts);
   }
 
   @Get('/find/phone/:phone')
