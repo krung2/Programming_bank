@@ -35,10 +35,12 @@ import { MessagingInterceptor } from './global/interceptors/messaging.intercepto
   providers: [{
     provide: APP_FILTER,
     useClass: ErrorFilter,
-  }, {
-    provide: APP_INTERCEPTOR,
-    useClass: MessagingInterceptor
-  }],
+  },
+    //  {
+    //   provide: APP_INTERCEPTOR,
+    //   useClass: MessagingInterceptor
+    // }
+  ],
 })
 
 export class AppModule { }
